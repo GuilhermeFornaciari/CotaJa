@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { InverseTableNavComponent } from './inverse-table-nav.component';
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('InverseTableNavComponent', () => {
+  let component: InverseTableNavComponent;
+  let fixture: ComponentFixture<InverseTableNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableComponent]
+      imports: [InverseTableNavComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(InverseTableNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
