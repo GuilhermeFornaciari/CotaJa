@@ -3,16 +3,21 @@
   <div class="drop-shadow-md">
     <section class="flex justify-between">
       <div class="flex justify-start">
-        <app-table-nav navId="0" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative z-30" ></app-table-nav>
-        <app-table-nav navId="1" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-2 z-20"></app-table-nav>
-        <app-table-nav navId="2" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-4 z-10"></app-table-nav>
+        <app-table-nav [navId]="0" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative z-30 h-6" >{{enterprises()[0].name }}</app-table-nav>
+        <app-table-nav [navId]="1" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-2 z-20 h-6">{{enterprises()[1].name}}</app-table-nav>
+        <app-table-nav [navId]="2" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-4 z-10 h-6">{{enterprises()[2].name}}</app-table-nav>
       </div>
       <div class="flex relative left-4">
-        <app-inverse-table-nav navId="3" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative z-10"></app-inverse-table-nav>
-        <app-inverse-table-nav navId="4" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-2 z-20"></app-inverse-table-nav>
-        <app-inverse-table-nav navId="5" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-4 z-30"></app-inverse-table-nav>
+        <app-inverse-table-nav [navId]="3" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative z-10 h-6">{{enterprises()[0].name}}</app-inverse-table-nav>
+        <app-inverse-table-nav [navId]="4" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-2 z-20 h-6">{{enterprises()[1].name}}</app-inverse-table-nav>
+        <app-inverse-table-nav [navId]="5" [activeId]="navActiveId" (changeActiveEvent)="changeActiveId($event)" class="relative -left-4 z-30 h-6">{{enterprises()[2].name}}</app-inverse-table-nav>
       </div>
     </section>
-    <app-register-table/>
+    @if (NumberActiveId() < 3) {
+      <app-register-table [activeId]="navActiveId" />
+    }
+    @else {
+      <app-result-table [activeId]="navActiveId - 3"/>
+    }
   </div>
 </main>

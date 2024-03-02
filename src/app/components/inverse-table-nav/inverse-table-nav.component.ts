@@ -7,14 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './inverse-table-nav.component.html',
   styleUrl: './inverse-table-nav.component.css'
 })
-export class InverseTableNavComponent implements OnInit {
-  @Input() public navId: string = '';
-  @Input() public activeId: string = '';
-  @Output() public changeActiveEvent = new EventEmitter<string>();
-  active: boolean = false
-  ngOnInit(): void {
-    if (this.navId == this.activeId) this.active = true
-  }
+export class InverseTableNavComponent {
+  @Input() public navId: number = 0;
+  @Input() public activeId: number = 0;
+  @Output() public changeActiveEvent = new EventEmitter<number>();
 
   changeActive(){
     this.changeActiveEvent.emit(this.navId)

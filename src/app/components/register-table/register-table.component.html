@@ -1,51 +1,45 @@
 
-<table class="w-full  bg-white rounded-b border border-zinc-900">
-  <tr><th>Cotação [Nome da empresa]</th></tr>
+<table class="w-full  bg-white rounded-b border border-zinc-300 " [formGroup]="form">
+  <tr class="grid grid-cols-10">
+    <th class="col-span-8 ">Cotação <input type="text" class="ring-1 ring-inset ring-zinc-100 mt-2 p-2 focus:outline-1 focus:outline-zinc-400" (change)="updateTable()" formControlName="name"></th>
+    <th class="col-span-2"><button class="bg-red-300 border border-red-400 p-1 rounded mt-2" (click)="clearAll()">Limpar tudo</button></th>
+
+  </tr>
   <tr class="grid grid-cols-10 border-b border-b-slate-200">
     <th class="col-span-1">N°</th>
     <th class="col-span-3">Nome do produto</th>
-    <th class="col-span-2">Valor</th>
     <th class="col-span-2">Quantidade</th>
+    <th class="col-span-2">Valor</th>
     <th class="col-span-2">Subtotal</th>
+  </tr>
+ <ng-container formArrayName="products" >
+  <div *ngFor="let item of products.controls; let i=index">
+    <div [formGroupName]="i">
+      <tr class="grid grid-cols-10" >
+        <td class="col-span-1">1</td>
+        <td class="col-span-3">
+          <input type="text" class="ring-1 ring-inset ring-zinc-100 p-1 w-5/6 focus:outline-1 focus:outline-zinc-400" (change)="updateTable()" formControlName="productName">
+        </td>
+        <td class="col-span-2">
+          <input type="number" class="ring-1 ring-inset ring-zinc-100 p-1 w-5/6 focus:outline-1 focus:outline-zinc-400" (change)="updateTable()" formControlName="quantity">
+        </td>
+        <td class="col-span-2">
+          <input type="number" class="ring-1 ring-inset ring-zinc-100 p-1 w-5/6 focus:outline-1 focus:outline-zinc-400" (change)="updateTable()" formControlName="value">
+        </td>
+        <td class="col-span-2">{{item.value.value * item.value.quantity}}</td>
+      </tr>
+    </div>
+  </div>
 
+ </ng-container>
+  <tr class="m-1 border border-slate-200 flex justify-center">
+    <button (click)="addNewProduct()">
+      <img src="assets/icons/ADD.svg" alt="">
+    </button>
   </tr>
-  <tr class="grid grid-cols-10">
-    <td class="col-span-1">1</td>
-    <td class="col-span-3">Banana</td>
-    <td class="col-span-2">13.00</td>
-    <td class="col-span-2">2</td>
-    <td class="col-span-2">26</td>
-  </tr>
-  <tr class="grid grid-cols-10">
-    <td class="col-span-1">1</td>
-    <td class="col-span-3">Banana</td>
-    <td class="col-span-2">13.00</td>
-    <td class="col-span-2">2</td>
-    <td class="col-span-2">26</td>
-  </tr>
-  <tr class="grid grid-cols-10">
-    <td class="col-span-1">1</td>
-    <td class="col-span-3">Banana</td>
-    <td class="col-span-2">13.00</td>
-    <td class="col-span-2">2</td>
-    <td class="col-span-2">26</td>
-  </tr>
-  <tr class="grid grid-cols-10">
-    <td class="col-span-1">1</td>
-    <td class="col-span-3">Banana</td>
-    <td class="col-span-2">13.00</td>
-    <td class="col-span-2">2</td>
-    <td class="col-span-2">26</td>
-  </tr>
-  <tr class="grid grid-cols-10">
-    <td class="col-span-1">1</td>
-    <td class="col-span-3">Banana</td>
-    <td class="col-span-2">13.00</td>
-    <td class="col-span-2">2</td>
-    <td class="col-span-2">26</td>
-  </tr>
+
   <tr class="grid grid-cols-10 ">
     <th class="col-span-8"></th>
-    <th class="col-span-2">26</th>
+    <th class="col-span-2">{{getTotalValue()}}</th>
   </tr>
 </table>
