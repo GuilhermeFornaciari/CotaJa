@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Enterprise, EnterpriseService } from '../../services/enterprise.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-table',
@@ -22,6 +23,7 @@ export class RegisterTableComponent implements OnChanges{
   constructor(
     private enterpriseService: EnterpriseService,
     private fb: FormBuilder,
+    private router: Router
 
     ){
     }
@@ -92,8 +94,8 @@ export class RegisterTableComponent implements OnChanges{
     return this.enterprise.products.reduce((acumulator,currentValue)=> {return acumulator + currentValue.value * currentValue.quantity},0)
   }
   clearAll(){
-
     this.enterpriseService.clearAll()
+    this.router.navigate(["/home"])
   }
 }
 
